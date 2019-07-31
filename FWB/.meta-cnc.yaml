@@ -1,0 +1,59 @@
+# edl_with_securityblockrule_panos_v81 adds a basic IP EDL
+# also created in and out security blocks rules with EDL as address
+# once created the security rule should be moved to the top of the rule list
+# associated to John Newsome Minemeld demo
+
+# unique snippet name
+name: HA_Skillet_FWB
+# label used for menu selection
+label: HA Active Passive FWB Configuration
+description: HA Active Passive FWB Configuration
+dependency:
+# type of device configuration
+type: panos
+extends:
+
+# grouping of like snippets for dynamic menu creation in panhandler
+labels:
+  collection:
+    - HASkillet
+
+# variables used in the configuration templates
+# type_hint defines the form field type in pan-cnc
+variables:
+  - name: ha1_ip_address
+    description: HA1 IP Address
+    default: 1.1.1.2
+    type_hint: ip_address
+  - name: ha1_netmask
+    description: HA1 Netmask
+    default: 255.255.255.0
+    type_hint: text
+  - name: ha1_backup_ip_address
+    description: HA1 Backup IP Address
+    default: 1.1.2.2
+    type_hint: ip_address
+  - name: ha1_backup_netmask
+    description: HA 1 Netmask
+    default: 255.255.255.0
+    type_hint: text
+  - name: group_id
+    description: Group ID
+    default: 10
+    type_hint: text
+  - name: peer_ip
+    description: HA1 Peer IP Address
+    default: 1.1.1.1
+    type_hint: ip_address
+  - name: peer_ip_backup
+    description: HA1 Backup Peer IP Address
+    default: 1.1.2.1
+    type_hint: ip_address
+
+
+# snippets used for api configuration including xpath and element as file name
+# files will load in the order listed
+snippets:
+  - name: high_availability
+    xpath: /config/devices/entry[@name='localhost.localdomain']/deviceconfig/high-availability
+    file: high_availability.xml
