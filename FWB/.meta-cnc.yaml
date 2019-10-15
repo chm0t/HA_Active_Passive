@@ -17,6 +17,7 @@ extends:
 labels:
   collection:
     - HASkillet
+    - cmotley
 
 # variables used in the configuration templates
 # type_hint defines the form field type in pan-cnc
